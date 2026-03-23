@@ -1,0 +1,271 @@
+{
+  "maa": {
+    "translit": "māʾ",
+    "arabic": "ماء",
+    "root_translit": "m-w-h",
+    "root_meaning": "water",
+    "root_arabic": "موه",
+    "forms": [
+      {
+        "translit": "māʾ",
+        "english": "water",
+        "arabic": "ماء"
+      },
+      {
+        "translit": "al-māʾ",
+        "english": "the water",
+        "arabic": "الماء"
+      },
+      {
+        "translit": "miyāh",
+        "english": "waters",
+        "arabic": "مياه"
+      }
+    ],
+    "sentence_translit": "urīdu māʾ",
+    "sentence_en": "I want water"
+  },
+
+  "bayt": {
+    "translit": "bayt",
+    "arabic": "بيت",
+    "root_translit": "b-y-t",
+    "root_meaning": "house",
+    "root_arabic": "بيت",
+    "forms": [
+      {
+        "translit": "bayt",
+        "english": "house",
+        "arabic": "بيت"
+      },
+      {
+        "translit": "buyūt",
+        "english": "houses",
+        "arabic": "بيوت"
+      },
+      {
+        "translit": "al-bayt",
+        "english": "the house",
+        "arabic": "البيت"
+      }
+    ],
+    "sentence_translit": "hādhā bayt",
+    "sentence_en": "This is a house"
+  },
+
+  "salam": {
+    "translit": "salām",
+    "arabic": "سلام",
+    "root_translit": "s-l-m",
+    "root_meaning": "peace",
+    "root_arabic": "سلم",
+    "forms": [
+      {
+        "translit": "salām",
+        "english": "peace",
+        "arabic": "سلام"
+      },
+      {
+        "translit": "al-salām",
+        "english": "the peace",
+        "arabic": "السلام"
+      },
+      {
+        "translit": "salāmah",
+        "english": "safety",
+        "arabic": "سلامة"
+      }
+    ],
+    "sentence_translit": "salām ʿalayk",
+    "sentence_en": "Peace be upon you"
+  },
+
+  "shams": {
+    "translit": "shams",
+    "arabic": "شمس",
+    "root_translit": "sh-m-s",
+    "root_meaning": "sun",
+    "root_arabic": "شمس",
+    "forms": [
+      {
+        "translit": "shams",
+        "english": "sun",
+        "arabic": "شمس"
+      },
+      {
+        "translit": "al-shams",
+        "english": "the sun",
+        "arabic": "الشمس"
+      },
+      {
+        "translit": "shumūs",
+        "english": "suns",
+        "arabic": "شموس"
+      }
+    ],
+    "sentence_translit": "al-shams sāṭiʿah",
+    "sentence_en": "The sun is shining"
+  },
+
+  "qamar": {
+    "translit": "qamar",
+    "arabic": "قمر",
+    "root_translit": "q-m-r",
+    "root_meaning": "moon",
+    "root_arabic": "قمر",
+    "forms": [
+      {
+        "translit": "qamar",
+        "english": "moon",
+        "arabic": "قمر"
+      },
+      {
+        "translit": "al-qamar",
+        "english": "the moon",
+        "arabic": "القمر"
+      },
+      {
+        "translit": "aqmār",
+        "english": "moons",
+        "arabic": "أقمار"
+      }
+    ],
+    "sentence_translit": "al-qamar jamīl",
+    "sentence_en": "The moon is beautiful"
+  },
+
+  "rajul": {
+    "translit": "rajul",
+    "arabic": "رجل",
+    "root_translit": "r-j-l",
+    "root_meaning": "man",
+    "root_arabic": "رجل",
+    "forms": [
+      {
+        "translit": "rajul",
+        "english": "man",
+        "arabic": "رجل"
+      },
+      {
+        "translit": "rijāl",
+        "english": "men",
+        "arabic": "رجال"
+      },
+      {
+        "translit": "al-rajul",
+        "english": "the man",
+        "arabic": "الرجل"
+      }
+    ],
+    "sentence_translit": "hādhā rajul",
+    "sentence_en": "This is a man"
+  },
+
+  "imraah": {
+    "translit": "imraʾah",
+    "arabic": "امرأة",
+    "root_translit": "m-r-ʾ",
+    "root_meaning": "woman",
+    "root_arabic": "مرء",
+    "forms": [
+      {
+        "translit": "imraʾah",
+        "english": "woman",
+        "arabic": "امرأة"
+      },
+      {
+        "translit": "nisāʾ",
+        "english": "women",
+        "arabic": "نساء"
+      },
+      {
+        "translit": "al-imraʾah",
+        "english": "the woman",
+        "arabic": "المرأة"
+      }
+    ],
+    "sentence_translit": "hādhihi imraʾah",
+    "sentence_en": "This is a woman"
+  },
+
+  "walad": {
+    "translit": "walad",
+    "arabic": "ولد",
+    "root_translit": "w-l-d",
+    "root_meaning": "child / birth",
+    "root_arabic": "ولد",
+    "forms": [
+      {
+        "translit": "walad",
+        "english": "boy",
+        "arabic": "ولد"
+      },
+      {
+        "translit": "awlād",
+        "english": "children",
+        "arabic": "أولاد"
+      },
+      {
+        "translit": "al-walad",
+        "english": "the boy",
+        "arabic": "الولد"
+      }
+    ],
+    "sentence_translit": "al-walad yaḍḥak",
+    "sentence_en": "The boy laughs"
+  },
+
+  "kalb": {
+    "translit": "kalb",
+    "arabic": "كلب",
+    "root_translit": "k-l-b",
+    "root_meaning": "dog",
+    "root_arabic": "كلب",
+    "forms": [
+      {
+        "translit": "kalb",
+        "english": "dog",
+        "arabic": "كلب"
+      },
+      {
+        "translit": "kilāb",
+        "english": "dogs",
+        "arabic": "كلاب"
+      },
+      {
+        "translit": "al-kalb",
+        "english": "the dog",
+        "arabic": "الكلب"
+      }
+    ],
+    "sentence_translit": "al-kalb kabīr",
+    "sentence_en": "The dog is big"
+  },
+
+  "bint": {
+    "translit": "bint",
+    "arabic": "بنت",
+    "root_translit": "b-n-t",
+    "root_meaning": "girl / daughter",
+    "root_arabic": "بنت",
+    "forms": [
+      {
+        "translit": "bint",
+        "english": "girl",
+        "arabic": "بنت"
+      },
+      {
+        "translit": "banāt",
+        "english": "girls",
+        "arabic": "بنات"
+      },
+      {
+        "translit": "al-bint",
+        "english": "the girl",
+        "arabic": "البنت"
+      }
+    ],
+    "sentence_translit": "al-bint taqraʾ",
+    "sentence_en": "The girl reads"
+  }
+}
