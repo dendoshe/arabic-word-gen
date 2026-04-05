@@ -5,6 +5,7 @@
     "root_translit": "m-w-h",
     "root_meaning": "water",
     "root_arabic": "موه",
+    "animation": "water",
     "forms": [
       {
         "translit": "māʾ",
@@ -32,6 +33,7 @@
     "root_translit": "b-y-t",
     "root_meaning": "house",
     "root_arabic": "بيت",
+    "animation": "house",
     "forms": [
       {
         "translit": "bayt",
@@ -59,6 +61,7 @@
     "root_translit": "s-l-m",
     "root_meaning": "peace",
     "root_arabic": "سلم",
+    "animation": "peace",
     "forms": [
       {
         "translit": "salām",
@@ -86,6 +89,7 @@
     "root_translit": "sh-m-s",
     "root_meaning": "sun",
     "root_arabic": "شمس",
+    "animation": "sun",
     "forms": [
       {
         "translit": "shams",
@@ -113,6 +117,7 @@
     "root_translit": "q-m-r",
     "root_meaning": "moon",
     "root_arabic": "قمر",
+    "animation": "moon",
     "forms": [
       {
         "translit": "qamar",
@@ -140,6 +145,7 @@
     "root_translit": "r-j-l",
     "root_meaning": "man",
     "root_arabic": "رجل",
+    "animation": "man",
     "forms": [
       {
         "translit": "rajul",
@@ -167,6 +173,7 @@
     "root_translit": "m-r-ʾ",
     "root_meaning": "woman",
     "root_arabic": "مرء",
+    "animation": "woman",
     "forms": [
       {
         "translit": "imraʾah",
@@ -194,6 +201,7 @@
     "root_translit": "w-l-d",
     "root_meaning": "child / birth",
     "root_arabic": "ولد",
+    "animation": "boy",
     "forms": [
       {
         "translit": "walad",
@@ -221,6 +229,7 @@
     "root_translit": "k-l-b",
     "root_meaning": "dog",
     "root_arabic": "كلب",
+    "animation": "dog",
     "forms": [
       {
         "translit": "kalb",
@@ -248,6 +257,7 @@
     "root_translit": "b-n-t",
     "root_meaning": "girl / daughter",
     "root_arabic": "بنت",
+    "animation": "girl",
     "forms": [
       {
         "translit": "bint",

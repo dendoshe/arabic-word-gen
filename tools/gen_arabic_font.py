@@ -34,10 +34,7 @@ except Exception as e:  # pragma: no cover - tool script
 
 
 ROOT = Path(__file__).resolve().parents[1]
-WORDS_PATHS = (
-    ROOT / "words.json",
-    ROOT / "lib" / "app" / "resources" / "words.json",
-)
+WORDS_PATHS = (ROOT / "words.json",)
 OUTPUT_PATH = ROOT / "lib" / "ui" / "arabic_font_data.py"
 
 DEFAULT_FONT = os.environ.get("ARABIC_FONT") or "SFArabic.ttf"
@@ -46,20 +43,40 @@ FONT_SIZE = int(os.environ.get("ARABIC_FONT_SIZE") or "18")
 # A strong dual-joining letter used to force contextual forms during reshaping.
 _JOINER = "ب"
 
-# Fallback Arabic spellings so you can generate a useful font without adding
-# Arabic text into words.json.
-ARABIC_TEXT_FALLBACK = {
-    "maa": {"base": "ماء", "forms": ["ماء", "الماء", "مياه"]},
-    "bayt": {"base": "بيت", "forms": ["بيت", "البيت", "بيوت"]},
-    "salam": {"base": "سلام", "forms": ["سلام", "السلام", "سلامة"]},
-    "shams": {"base": "شمس", "forms": ["شمس", "الشمس", "شموس"]},
-    "qamar": {"base": "قمر", "forms": ["قمر", "القمر", "أقمار"]},
-    "rajul": {"base": "رجل", "forms": ["رجل", "رجال", "الرجل"]},
-    "imraah": {"base": "امرأة", "forms": ["امرأة", "نساء", "المرأة"]},
-    "walad": {"base": "ولد", "forms": ["ولد", "أولاد", "الولد"]},
-    "kalb": {"base": "كلب", "forms": ["كلب", "كلاب", "الكلب"]},
-    "bint": {"base": "بنت", "forms": ["بنت", "بنات", "البنت"]},
-}
+# Fallback Arabic samples so you can generate a useful font even if the JSON
+# file is unavailable or temporarily lacks Arabic fields.
+ARABIC_TEXT_FALLBACK = (
+    "ماء",
+    "الماء",
+    "مياه",
+    "بيت",
+    "البيت",
+    "بيوت",
+    "سلام",
+    "السلام",
+    "سلامة",
+    "شمس",
+    "الشمس",
+    "شموس",
+    "قمر",
+    "القمر",
+    "أقمار",
+    "رجل",
+    "رجال",
+    "الرجل",
+    "امرأة",
+    "نساء",
+    "المرأة",
+    "ولد",
+    "أولاد",
+    "الولد",
+    "كلب",
+    "كلاب",
+    "الكلب",
+    "بنت",
+    "بنات",
+    "البنت",
+)
 
 
 def load_font(size: int) -> ImageFont.FreeTypeFont:
@@ -142,10 +159,8 @@ def extract_charset(words: Dict) -> List[str]:
                 if isinstance(val, str):
                     chars.update(val)
     if not chars:
-        for entry in ARABIC_TEXT_FALLBACK.values():
-            chars.update(entry.get("base") or "")
-            for form_text in entry.get("forms") or []:
-                chars.update(form_text)
+        for text in ARABIC_TEXT_FALLBACK:
+            chars.update(text)
     # Also include common letters from existing generator defaults.
     # (This is intentionally conservative; you can always add to CHARSET_EXTRA.)
     charset_extra = os.environ.get("ARABIC_CHARSET_EXTRA") or ""

@@ -39,7 +39,7 @@ DEFAULT_WORDS = {
 
 def load_words(paths=None, *, glyphs=None):
     """
-    Load words.json from the first existing path, validating shape (and optionally glyph coverage).
+    Load words.json, validating shape (and optionally glyph coverage).
     """
     paths = paths or config.WORD_PATHS
     for path in paths:

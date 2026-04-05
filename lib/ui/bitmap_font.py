@@ -14,8 +14,25 @@ except ImportError:  # desktop linting fallback
     class _DummyFrameBuffer:
         MONO_VLSB = 4
 
-        def __init__(self, *args, **kwargs):
-            pass
+        def __init__(self, buffer, width, height, fmt):
+            self.buffer = buffer
+            self.width = int(width)
+            self.height = int(height)
+            self.format = int(fmt)
+
+        def pixel(self, x, y, color=None):
+            x = int(x)
+            y = int(y)
+            if x < 0 or y < 0 or x >= self.width or y >= self.height:
+                return 0
+            idx = x + (y // 8) * self.width
+            bit = 1 << (y % 8)
+            if color is None:
+                return 1 if (self.buffer[idx] & bit) else 0
+            if color:
+                self.buffer[idx] |= bit
+            else:
+                self.buffer[idx] &= ~bit
 
     class _DummyFrameBufModule:
         FrameBuffer = _DummyFrameBuffer

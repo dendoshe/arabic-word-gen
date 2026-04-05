@@ -26,6 +26,33 @@ Copies to a Raspberry Pi Pico/Pico W and blinks an I2C OLED (typically SSD1306).
 
 Note: this is MicroPython code (it won't run under desktop Python).
 
+If you do not have the Pico/OLED hardware with you, you can run the desktop simulator:
+
+- `python3 tools/simulate_display.py`
+- `python3 tools/simulate_display.py --word kitab`
+- `python3 tools/simulate_display.py --view forms --form-index 1`
+
+This opens a small window with two OLED-style screens and three virtual buttons. You can
+click the buttons or press keys `1`, `2`, and `3` to move through the same views as the
+hardware version. If you want a larger desktop view, add `--scale 3` or `--scale 4`.
+
+## Hardware vs Simulator
+
+The project has two entrypoints:
+
+- `main.py`: real Pico hardware path
+- `python3 tools/simulate_display.py`: desktop simulator path
+
+They share the same app state and UI drawing code, especially `lib/ui/dual_screen.py`.
+The difference is the display backend:
+
+- hardware uses `lib/hardware/oled_display.py` to send draw calls to real SSD1306 OLEDs
+- simulation uses `lib/display/recording.py` to record draw calls into frame data, then
+  `lib/desktop/simulator.py` paints that recorded frame into Tk canvases
+
+This keeps the simulator detached from Pico-specific rendering code while avoiding a second
+copy of the UI renderer.
+
 The code now reads `DISPLAY_CONFIGS` in `lib/app/config.py` and initializes each OLED separately.
 Each bus tries SoftI2C first (more tolerant) and then hardware I2C, looking for an OLED at
 `0x3C`/`0x3D`.
@@ -42,10 +69,9 @@ If you wire a button to `GP18` (pull-up), you can press it to advance the page e
 
 ## Vocabulary Data (words.json)
 
-The app loads words from the first valid file in `lib/app/config.py#WORD_PATHS`:
-
-- `words.json` (top-level, easiest to edit)
-- `lib/app/resources/words.json` (fallback default)
+The app loads words from `words.json` at the repo root.
+If that file is missing or invalid, it falls back to the in-code `DEFAULT_WORDS`
+mapping in `lib/app/words.py`.
 
 To validate a file on your computer:
 
@@ -68,23 +94,7 @@ Edit `DISPLAY_CONFIGS` in `lib/app/config.py` to match your wiring.
 
 ## Word Animation Hook
 
-The animation renderer lives in `lib/ui/animation_views.py`, but the editable animation data now
-lives in `lib/ui/resources/animation_config.json`.
-
-That JSON file contains:
-
-- the default scene
-- word → scene mapping
-- scene aliases
-- hint keywords
-- scene element parameters
-- optional config-level word overrides
-
-The loader checks `animation_config.json` first and then falls back to
-`lib/ui/resources/animation_config.json`, so you can add a top-level override file later without
-editing the bundled fallback.
-
-Per-word overrides can still be set in `words.json` with an optional `animation` field:
+Each word can set its animation directly in `words.json` with an optional `animation` field:
 
 ```json
 "maa": {
@@ -92,15 +102,21 @@ Per-word overrides can still be set in `words.json` with an optional `animation`
 }
 ```
 
-or:
+The wiring is:
 
-```json
-"bint": {
-  "animation": {
-    "scene": "girl"
-  }
-}
-```
+1. `words.json` defines the current word data and its `animation` name
+2. `lib/ui/dual_screen.py` sends the active word to the secondary screen renderer
+3. `lib/ui/animation_views.py` resolves `word["animation"]`
+4. the `ANIMATIONS` registry picks the matching draw function
+5. that draw function renders the secondary display for the current frame
 
-Supported scene ids are `water`, `sun`, `moon`, `house`, `peace`, `man`, `woman`, `boy`,
+`lib/ui/animation_views.py` keeps the whole animation skeleton:
+
+- one animation name per word
+- one `ANIMATIONS` registry mapping animation name to draw function
+- one render call for the current word
+
+If a word has no `animation`, or uses an unknown one, the renderer falls back to `pulse`.
+
+Supported animation ids are `water`, `sun`, `moon`, `house`, `peace`, `man`, `woman`, `boy`,
 `girl`, `dog`, and `pulse`. `walker` is still accepted as a legacy alias for `man`.

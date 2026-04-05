@@ -34,8 +34,8 @@ BUTTON3_PIN = 20
 
 DEFAULT_WORD_KEY = "kitab"
 
-# Locations to search for vocab data
-WORD_PATHS = ("words.json", "lib/app/resources/words.json")
+# Editable vocab source of truth
+WORD_PATHS = ("words.json",)
 
 # Display refresh
 FPS = 30

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Offline validator for words.json (or the bundled fallback).
+Offline validator for words.json.
 """
 
 import argparse
@@ -26,7 +26,7 @@ def main():
 
     path = args.path
     if path is None:
-        for candidate in ("words.json", "lib/app/resources/words.json"):
+        for candidate in ("words.json",):
             if Path(candidate).exists():
                 path = candidate
                 break

@@ -1,6 +1,8 @@
 from machine import Pin, I2C, SoftI2C
 import ssd1306
 
+from lib.display.group import NamedDisplayGroup
+
 
 class OledDisplay:
     """
@@ -127,21 +129,20 @@ class OledDisplay:
         return getattr(o, "height", self.h)
 
 
-class OledDisplayGroup:
+class OledDisplayGroup(NamedDisplayGroup):
     """
     Broadcast drawing operations to multiple OLEDs while keeping named access
     available for future screen-specific layouts.
     """
 
     def __init__(self, w=128, h=64, addrs=(0x3C, 0x3D), soft_freq=100_000, hw_freq=400_000):
+        NamedDisplayGroup.__init__(self)
         self.w, self.h, self.addrs = w, h, addrs
         self.soft_freq = soft_freq
         self.hw_freq = hw_freq
-        self._displays = {}
-        self._order = ()
 
     def init_many(self, display_configs, *, verbose=False, strict=False):
-        self._displays = {}
+        displays = {}
         order = []
         ready_count = 0
 
@@ -155,7 +156,7 @@ class OledDisplayGroup:
                 soft_freq=self.soft_freq,
                 hw_freq=self.hw_freq,
             )
-            self._displays[name] = display
+            displays[name] = display
             if display.init(
                 sda_pin=cfg["sda_pin"],
                 scl_pin=cfg["scl_pin"],
@@ -165,79 +166,8 @@ class OledDisplayGroup:
             ):
                 ready_count += 1
 
-        self._order = tuple(order)
+        self.set_displays(displays, order=order)
 
         if strict and not ready_count:
             raise OSError("No OLED displays initialized.")
         return ready_count > 0
-
-    def screen(self, name):
-        display = self._displays.get(name)
-        if display is None:
-            raise KeyError("Unknown OLED screen: %s" % name)
-        return display
-
-    def _ready_displays(self):
-        ready = []
-        for name in self._order:
-            display = self._displays[name]
-            if display.is_ready():
-                ready.append(display)
-        if not ready:
-            raise RuntimeError("OLED not initialized (no address found at 0x3C/0x3D).")
-        return ready
-
-    def is_ready(self) -> bool:
-        return any(display.is_ready() for display in self._displays.values())
-
-    def clear(self, color: int = 0) -> None:
-        for display in self._ready_displays():
-            display.clear(color)
-
-    def text(self, msg: str, x: int, y: int, color: int = 1) -> None:
-        for display in self._ready_displays():
-            display.text(msg, x, y, color)
-
-    def fill_rect(self, x: int, y: int, w: int, h: int, color: int = 1) -> None:
-        for display in self._ready_displays():
-            display.fill_rect(x, y, w, h, color)
-
-    def rect(self, x: int, y: int, w: int, h: int, color: int = 1) -> None:
-        for display in self._ready_displays():
-            display.rect(x, y, w, h, color)
-
-    def hline(self, x: int, y: int, w: int, color: int = 1) -> None:
-        for display in self._ready_displays():
-            display.hline(x, y, w, color)
-
-    def vline(self, x: int, y: int, h: int, color: int = 1) -> None:
-        for display in self._ready_displays():
-            display.vline(x, y, h, color)
-
-    def line(self, x1: int, y1: int, x2: int, y2: int, color: int = 1) -> None:
-        for display in self._ready_displays():
-            display.line(x1, y1, x2, y2, color)
-
-    def pixel(self, x: int, y: int, color: int = 1) -> None:
-        for display in self._ready_displays():
-            display.pixel(x, y, color)
-
-    def blit(self, buffer, x: int, y: int) -> None:
-        for display in self._ready_displays():
-            display.blit(buffer, x, y)
-
-    def show(self) -> None:
-        for display in self._ready_displays():
-            display.show()
-
-    def safe_off(self) -> None:
-        for name in self._order:
-            self._displays[name].safe_off()
-
-    @property
-    def width(self) -> int:
-        return self._ready_displays()[0].width
-
-    @property
-    def height(self) -> int:
-        return self._ready_displays()[0].height

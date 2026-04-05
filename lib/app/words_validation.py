@@ -15,7 +15,7 @@ REQUIRED_WORD_FIELDS = {
 }
 
 OPTIONAL_WORD_FIELDS = {
-    "animation": (str, dict),
+    "animation": str,
 }
 
 REQUIRED_FORM_FIELDS = {
