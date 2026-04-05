@@ -68,12 +68,23 @@ Edit `DISPLAY_CONFIGS` in `lib/app/config.py` to match your wiring.
 
 ## Word Animation Hook
 
-The secondary screen uses a descriptor-driven scene renderer in `lib/ui/animation_views.py`.
-Each animation is built from a small set of reusable primitives and scene elements, so adding
-new words usually means mapping a word to a scene id instead of writing a new draw function.
+The animation renderer lives in `lib/ui/animation_views.py`, but the editable animation data now
+lives in `lib/ui/resources/animation_config.json`.
 
-The animation is chosen by word key / meaning, and you can override it per word
-with an optional `animation` field in `words.json`:
+That JSON file contains:
+
+- the default scene
+- word → scene mapping
+- scene aliases
+- hint keywords
+- scene element parameters
+- optional config-level word overrides
+
+The loader checks `animation_config.json` first and then falls back to
+`lib/ui/resources/animation_config.json`, so you can add a top-level override file later without
+editing the bundled fallback.
+
+Per-word overrides can still be set in `words.json` with an optional `animation` field:
 
 ```json
 "maa": {

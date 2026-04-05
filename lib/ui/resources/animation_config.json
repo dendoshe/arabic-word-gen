@@ -1,0 +1,284 @@
+{
+  "default_scene": "pulse",
+  "scene_aliases": {
+    "pulse": "pulse",
+    "water": "water",
+    "sun": "sun",
+    "moon": "moon",
+    "house": "house",
+    "peace": "peace",
+    "walker": "man",
+    "man": "man",
+    "woman": "woman",
+    "boy": "boy",
+    "girl": "girl",
+    "dog": "dog"
+  },
+  "hint_keywords": [
+    { "keyword": "water", "scene": "water" },
+    { "keyword": "sun", "scene": "sun" },
+    { "keyword": "moon", "scene": "moon" },
+    { "keyword": "house", "scene": "house" },
+    { "keyword": "dog", "scene": "dog" },
+    { "keyword": "peace", "scene": "peace" },
+    { "keyword": "man", "scene": "man" },
+    { "keyword": "woman", "scene": "woman" },
+    { "keyword": "girl", "scene": "girl" },
+    { "keyword": "boy", "scene": "boy" },
+    { "keyword": "child", "scene": "boy" }
+  ],
+  "word_scene_map": {
+    "maa": "water",
+    "bayt": "house",
+    "salam": "peace",
+    "shams": "sun",
+    "qamar": "moon",
+    "rajul": "man",
+    "imraah": "woman",
+    "walad": "boy",
+    "kalb": "dog",
+    "bint": "girl"
+  },
+  "word_overrides": {},
+  "scenes": {
+    "pulse": {
+      "elements": [
+        {
+          "kind": "pulse_rects",
+          "x": 64,
+          "y": 38,
+          "base_w": 24,
+          "base_h": 12,
+          "inset_w": 10,
+          "inset_h": 5,
+          "tick_ms": 130,
+          "phase_count": 16,
+          "rect_count": 3
+        },
+        {
+          "kind": "text_center",
+          "field": "sentence_en",
+          "y": 54
+        }
+      ]
+    },
+    "water": {
+      "elements": [
+        {
+          "kind": "water_rows",
+          "start_y": 20,
+          "rows": 4,
+          "row_gap": 9,
+          "wave_period": 18,
+          "tick_ms": 90
+        },
+        {
+          "kind": "bubble_field",
+          "start_y": 20,
+          "rows": 4,
+          "row_gap": 9
+        }
+      ]
+    },
+    "sun": {
+      "elements": [
+        {
+          "kind": "sun",
+          "x": 64,
+          "y": 36,
+          "radius": 9,
+          "ray": 5,
+          "tick_ms": 140,
+          "phase_count": 6
+        }
+      ]
+    },
+    "moon": {
+      "elements": [
+        {
+          "kind": "moon",
+          "x": 64,
+          "y": 36,
+          "radius": 13,
+          "cutout_x": 5,
+          "tick_ms": 220,
+          "drift_steps": 5
+        },
+        {
+          "kind": "stars",
+          "points": [
+            [22, 20],
+            [90, 18],
+            [102, 30],
+            [26, 46]
+          ],
+          "tick_ms": 180
+        }
+      ]
+    },
+    "house": {
+      "elements": [
+        {
+          "kind": "house",
+          "left": 34,
+          "top": 24,
+          "width": 60,
+          "height": 28,
+          "tick_ms": 220,
+          "phase_count": 4
+        }
+      ]
+    },
+    "peace": {
+      "elements": [
+        {
+          "kind": "peace_symbol",
+          "x": 64,
+          "y": 34,
+          "radius": 12
+        },
+        {
+          "kind": "ring",
+          "x": 64,
+          "y": 34,
+          "base_radius": 16,
+          "step": 1,
+          "tick_ms": 140,
+          "phase_count": 7
+        },
+        {
+          "kind": "branch",
+          "start_x": 42,
+          "start_y": 50,
+          "direction": 1
+        },
+        {
+          "kind": "branch",
+          "start_x": 86,
+          "start_y": 50,
+          "direction": -1
+        }
+      ]
+    },
+    "man": {
+      "elements": [
+        {
+          "kind": "person_walk",
+          "base_x": 20,
+          "travel": 78,
+          "move_tick_ms": 90,
+          "gait_tick_ms": 120,
+          "head_y": 20,
+          "body_len": 13,
+          "ground_y": 53
+        },
+        {
+          "kind": "ground",
+          "x": 10,
+          "y": 55,
+          "width": 108
+        }
+      ]
+    },
+    "woman": {
+      "elements": [
+        {
+          "kind": "person_sway",
+          "base_x": 64,
+          "head_y": 20,
+          "sway_tick_ms": 180,
+          "body_len": 11,
+          "ground_y": 53,
+          "hair": true
+        },
+        {
+          "kind": "ground",
+          "x": 18,
+          "y": 55,
+          "width": 92
+        }
+      ]
+    },
+    "boy": {
+      "elements": [
+        {
+          "kind": "person_bounce",
+          "x": 42,
+          "head_y": 24,
+          "jump_steps": [0, 2, 5, 2, 0, 1],
+          "tick_ms": 100,
+          "body_len": 9,
+          "ground_y": 54
+        },
+        {
+          "kind": "ball_bounce",
+          "x": 82,
+          "y": 43,
+          "offsets": [0, 3, 7, 3, 0, 2],
+          "tick_ms": 100,
+          "radius": 3
+        },
+        {
+          "kind": "ground",
+          "x": 10,
+          "y": 56,
+          "width": 108
+        }
+      ]
+    },
+    "girl": {
+      "elements": [
+        {
+          "kind": "person_pose",
+          "x": 38,
+          "head_y": 22,
+          "body_len": 10,
+          "arm_dx": 5,
+          "leg_dx": 4,
+          "ground_y": 53,
+          "dress": true,
+          "arm_y": 31,
+          "body_dx": 0,
+          "hair": false
+        },
+        {
+          "kind": "open_book",
+          "x": 74,
+          "y": 28,
+          "spreads": [7, 8, 9, 10],
+          "tick_ms": 160
+        },
+        {
+          "kind": "reading_lines",
+          "lines": [
+            [43, 33, 64, 34],
+            [43, 35, 66, 40]
+          ]
+        },
+        {
+          "kind": "ground",
+          "x": 16,
+          "y": 55,
+          "width": 96
+        }
+      ]
+    },
+    "dog": {
+      "elements": [
+        {
+          "kind": "dog",
+          "x": 44,
+          "y": 34,
+          "tick_ms": 130,
+          "phase_count": 4
+        },
+        {
+          "kind": "ground",
+          "x": 20,
+          "y": 56,
+          "width": 88
+        }
+      ]
+    }
+  }
+}
